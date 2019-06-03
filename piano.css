@@ -1,0 +1,38 @@
+:root {
+  --num-white-keys: 52;
+  /* according to this: https://music.stackexchange.com/a/53872 these ratios are roughly equivalent to this dude's keyboard */
+  --black-to-white-width-ratio: calc( (15/32) / (7/8));
+  --black-to-white-height-ratio: calc( (3 + (15 / 16)) / 6);
+  --height-to-width-ratio: calc( 6 / (7 / 8));
+  
+  --white-width: calc(100vw / var(--num-white-keys));
+  --black-width: calc(var(--white-width) * var(--black-to-white-width-ratio));
+  --white-height: calc(var(--white-width) * var(--height-to-width-ratio));
+  --black-height: calc(var(--white-height) * var(--black-to-white-height-ratio));
+}
+
+.keyboard-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: var(--white-height);
+}
+
+.whiteKey {
+  width: var(--white-width);
+  height: var(--white-height);
+  background: #ffffff;
+  outline: 1px solid black;
+  margin:0 0 0 0;
+  padding: 0 0 0 0;
+  z-index:1;
+}
+
+.blackKey {
+  width: var(--black-width);
+  height: var(--black-height);
+  background: #000000;
+  margin: 0 calc(-1 * var(--black-width) / 2);
+  padding: 0 0 0 0;
+  z-index:2;
+}
